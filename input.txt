@@ -1,15 +1,15 @@
-a
+k
 b L
-c R
-d LL
+a R
+m LL
 e LR
 f RL
 g RR
 h LLL
-i LLR
+o LLR
 j LRL
-k LRR
+n LRR
 l RLL
-m RLR
-n RRL
-o RRR
+d RLR
+c RRL
+i RRR
