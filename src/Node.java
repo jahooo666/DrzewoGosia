@@ -70,10 +70,15 @@ public class Node {
         if(left!=null) {
             if(right!=null) {
                 //tutaj wykorzystuje to że compareTo we wszystkich językach uzywa porzadku leksykograficznego czyli tego który potrzebujemy
-                if ((this.left.findOldestWord().compareTo(this.right.findOldestWord()))>0)
+                if (this.left.getLabel() > this.right.getLabel() )
+                    oldestWord += left.findOldestWord();
+                else if(this.left.getLabel() < this.right.getLabel())
+                    oldestWord += right.findOldestWord();
+                else if ((this.left.findOldestWord().compareTo(this.right.findOldestWord()))>0)
                     oldestWord += left.findOldestWord();
                 else
                     oldestWord += right.findOldestWord();
+
             }
         }
         return oldestWord;
