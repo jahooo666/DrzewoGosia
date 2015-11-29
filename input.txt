@@ -1,0 +1,15 @@
+a
+b L
+c P
+d LL
+e LP
+f PL
+g PP
+h LLL
+i LLP
+j LPL
+k LPP
+l PLL
+m PLP
+n PPL
+o PPP
