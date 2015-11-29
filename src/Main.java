@@ -4,20 +4,24 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         try {
-            Scanner odczyt = new Scanner(new File("input.txt"));
+            // Scanner odczyt = new Scanner(new File("input.txt"));
+            // Scanner odczyt = new Scanner(new File("przyklad1"));
+           // Scanner odczyt = new Scanner(new File("przyklad2"));
+             Scanner odczyt = new Scanner(new File("przyklad3"));
 
             //wczytywanie korzenia głównego - dla ułatwienia jest to pierwszy element
-            String rootLine = odczyt.nextLine();
-            String[] rootPodzielone = rootLine.split(" ");
-            char rootLabel = rootPodzielone[0].charAt(0);
-            Node root = new Node(rootLabel);
+            Node root = new Node('-');
 
             while (odczyt.hasNextLine()) {
                 String line = odczyt.nextLine();
                 String[] podzielone = line.split(" ");
                 char label = podzielone[0].charAt(0);
-                String path = podzielone[1];
-                root.insert(label,path);
+                if (podzielone.length > 1) {
+                    String path = podzielone[1];
+                    root.insert(label, path);
+                } else
+                    root.setLabel(label);
+
             }
             root.printFormated(0);
             System.out.println("Wyszukuje najstarsze słowo");

@@ -2,6 +2,10 @@ public class Node {
     private char label;
     private Node left, right;
 
+    public void setLabel(char label) {
+        this.label = label;
+    }
+
     public Node(char label) {
         this.label = label;
         this.left = null;
@@ -44,23 +48,29 @@ public class Node {
 
     public void insert(char label, String position) throws Exception {
 
-        if (position.length() > 0) {
-            System.out.println("Jestem w pętli >0 "+label +" "+ position);
+        if((position==null)||(position.length() > 0)){
             if (position.charAt(0) == 'L') {
                 if (this.left == null) {
-                    this.left = new Node(label);
+                    this.left = new Node('-');
+                    if(position.length()==1)
+                        this.left.setLabel(label);
+                    else
+                        this.left.insert(label,position.substring(1));
                 } else
                     this.left.insert(label, position.substring(1));
             } else if (position.charAt(0) == 'R') {
                 if (this.right == null) {
-                    this.right = new Node(label);
+                    this.right = new Node('-');
+                    if(position.length()==1)
+                        this.right.setLabel(label);
+                    else
+                        this.right.insert(label,position.substring(1));
                 } else
                     this.right.insert(label, position.substring(1));
             } else
-                throw new Exception("Nieprawidłowa składnia: Pozycja powinna składać się wyłączeni ze znaków P oraz L");
+                throw new Exception("Nieprawidłowa składnia: Pozycja powinna składać się wyłączeni ze znaków R oraz L");
         } else {
-            //dodajemy w tym miejscu element
-            System.out.println("Coś poszło nie tak, ale nie do końca wiemy co");
+            this.label = label;
         }
 
 
