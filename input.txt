@@ -1,15 +1,15 @@
 a
 b L
-c P
+c R
 d LL
-e LP
-f PL
-g PP
+e LR
+f RL
+g RR
 h LLL
-i LLP
-j LPL
-k LPP
-l PLL
-m PLP
-n PPL
-o PPP
+i LLR
+j LRL
+k LRR
+l RLL
+m RLR
+n RRL
+o RRR

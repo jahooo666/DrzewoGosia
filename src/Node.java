@@ -43,7 +43,9 @@ public class Node {
     }
 
     public void insert(char label, String position) throws Exception {
+
         if (position.length() > 0) {
+            System.out.println("Jestem w pętli >0 "+label +" "+ position);
             if (position.charAt(0) == 'L') {
                 if (this.left == null) {
                     this.left = new Node(label);
