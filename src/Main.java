@@ -20,6 +20,8 @@ public class Main {
                 root.insert(label,path);
             }
             root.printFormated(0);
+            System.out.println("Wyszukuje najstarsze słowo");
+            System.out.println(root.findOldestWord());
         } catch (Exception ex) {
             System.out.println(ex);
         }

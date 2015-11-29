@@ -65,6 +65,22 @@ public class Node {
 
 
     }
+    public String findOldestWord(){
+        String oldestWord = "" + this.label;
+        if(left!=null) {
+            if(right!=null) {
+                if (this.left.getLabel() > this.right.getLabel())
+                    oldestWord += left.findOldestWord();
+                else if(this.left.getLabel() < this.right.getLabel())
+                    oldestWord += right.findOldestWord();
+
+            }
+        }
+        //zakładamy że brak znaku jest większy niż jakikolwiek inny znak
+        //jesli odwrotnie- trzeb pododawać powyżej elsy
+        return oldestWord;
+
+    }
 
 
 
