@@ -1,15 +1,31 @@
 public class Node {
     private char label;
     private Node left, right;
+    boolean wierzcholek;
+    String oldestPath;
+
+    public void setOldestPath(String oldestPath) {
+        this.oldestPath = oldestPath;
+    }
+
+    public boolean isWierzcholek(){
+        return wierzcholek;
+    }
 
     public void setLabel(char label) {
         this.label = label;
+    }
+
+    public String getOldestPath() {
+        return oldestPath;
     }
 
     public Node(char label) {
         this.label = label;
         this.left = null;
         this.right = null;
+        this.wierzcholek = true;
+        this.oldestPath = "0";
     }
 
     public char getLabel() {
@@ -48,7 +64,7 @@ public class Node {
 
     public void insert(char label, String position) throws Exception {
 
-        if((position==null)||(position.length() > 0)){
+        if((position!=null)&&(position.length() > 0)){
             if (position.charAt(0) == 'L') {
                 if (this.left == null) {
                     this.left = new Node('-');
@@ -69,81 +85,29 @@ public class Node {
                     this.right.insert(label, position.substring(1));
             } else
                 throw new Exception("Nieprawidłowa składnia: Pozycja powinna składać się wyłączeni ze znaków R oraz L");
-        } else {
+        }else {
             this.label = label;
         }
-
-
     }
-    public String findOldestWord(){
-        String oldestWord = "" + this.label;
-        if(left!=null) {
-            if(right!=null) {
-                //tutaj wykorzystuje to że compareTo we wszystkich językach uzywa porzadku leksykograficznego czyli tego który potrzebujemy
-                if (this.left.getLabel() > this.right.getLabel() )
-                    oldestWord += left.findOldestWord();
-                else if(this.left.getLabel() < this.right.getLabel())
-                    oldestWord += right.findOldestWord();
-                else if ((this.left.findOldestWord().compareTo(this.right.findOldestWord()))>0)
-                    oldestWord += left.findOldestWord();
-                else
-                    oldestWord += right.findOldestWord();
+
+
+
+    public void findOldestPath(Node root, String curr){
+        String currentPath = this.label + curr;
+
+        if((this.left==null) && (this.right==null)){
+            if(currentPath.compareTo(root.getOldestPath())>0){
+                root.setOldestPath(currentPath);
             }
         }
-        return oldestWord;
-    }
-
-    public String findOldestWordFromLeaf(){
-        String oldestWord = "" + this.label;
-        if(left!=null) {
-            if(right!=null) {
-                //tutaj wykorzystuje to że compareTo we wszystkich językach uzywa porzadku leksykograficznego czyli tego który potrzebujemy
-
-                if ((reverse(this.left.findOldestWord()).compareTo(reverse(this.right.findOldestWord())))>0)
-                    oldestWord += left.findOldestWord();
-                else
-                    oldestWord += right.findOldestWord();
-            }
+        if(this.left!=null){
+            this.left.findOldestPath(root,currentPath);
         }
-        return oldestWord;
-    }
-
-    public String findOldest(){
-        return reverse(findOldestWordFromLeaf());
-    }
-
-
-    public static String reverse(String source) {
-        int i, len = source.length();
-        StringBuilder dest = new StringBuilder(len);
-
-        for (i = (len - 1); i >= 0; i--){
-            dest.append(source.charAt(i));
+        if(this.right!=null){
+            this.right.findOldestPath(root,currentPath);
         }
 
-        return dest.toString();
+
     }
 
-
-
-
-
-
-
-   /* public double get(int index) {
-        if (index == this.index) {
-            return this.value;
-        } else if (index < this.index) {
-            if (this.left == null)
-                return 0.0;
-            else
-                return this.left.get(index);
-        } else if (index > this.index) {
-            if (this.right == null)
-                return 0.0;
-            else
-                return this.right.get(index);
-        }
-        return 0;
-    }*/
 }

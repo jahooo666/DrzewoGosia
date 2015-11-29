@@ -5,8 +5,8 @@ public class Main {
     public static void main(String[] args) {
         try {
             // Scanner odczyt = new Scanner(new File("input.txt"));
-            // Scanner odczyt = new Scanner(new File("przyklad1"));
-           // Scanner odczyt = new Scanner(new File("przyklad2"));
+          //   Scanner odczyt = new Scanner(new File("przyklad1"));
+          // Scanner odczyt = new Scanner(new File("przyklad2"));
              Scanner odczyt = new Scanner(new File("przyklad3"));
 
             //wczytywanie korzenia głównego - dla ułatwienia jest to pierwszy element
@@ -25,7 +25,9 @@ public class Main {
             }
             root.printFormated(0);
             System.out.println("Wyszukuje najstarsze słowo");
-            System.out.println(root.findOldest());
+            //System.out.println(root.findOldest());
+            root.findOldestPath(root,"");
+            System.out.println(root.getOldestPath());
         } catch (Exception ex) {
             System.out.println(ex);
         }
