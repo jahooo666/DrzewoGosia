@@ -69,11 +69,11 @@ public class Node {
         String oldestWord = "" + this.label;
         if(left!=null) {
             if(right!=null) {
+                //tutaj wykorzystuje to że compareTo we wszystkich językach uzywa porzadku leksykograficznego czyli tego który potrzebujemy
                 if ((this.left.findOldestWord().compareTo(this.right.findOldestWord()))>0)
                     oldestWord += left.findOldestWord();
                 else
                     oldestWord += right.findOldestWord();
-
             }
         }
         return oldestWord;
